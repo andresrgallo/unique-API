@@ -17,6 +17,9 @@ function randomDate(start, end) {
 	var date = new Date(+start + Math.random() * (end - start));
 	return date;
 }
+//Within the below range
+var startRange = new Date(2018, 06, 01);
+var endRange = new Date(2019, 01, 20);
 
 //Generate random week days
 function randomDay() {
@@ -38,9 +41,10 @@ function randomFrequency() {
 	return paymentFrequency[Math.round(Math.random() * 2)];
 }
 
-//Within the below range
-var startRange = new Date(2018, 06, 01);
-var endRange = new Date(2019, 01, 20);
+//Generate random rent amount
+function randomRent() {
+	return paymentFrequency[Math.round(Math.random() * (800 - 500) + 500)];
+}
 
 app.get('/v1/leases/:id', (req, res) => {
 	var id = req.params.id;
