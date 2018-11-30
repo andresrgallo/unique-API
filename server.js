@@ -34,16 +34,8 @@ function randomDay() {
 
 //Generate random frequency
 function randomFrequency() {
-	const weekDays = [
-		'monday',
-		'tuesday',
-		'wednesday',
-		'thursday',
-		'friday',
-		'saturday',
-		'sunday'
-	];
-	return weekDays[Math.round(Math.random() * 6)];
+	const paymentFrequency = ['weekly', 'fortnightly', 'monthly'];
+	return paymentFrequency[Math.round(Math.random() * 2)];
 }
 
 //Within the below range
