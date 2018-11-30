@@ -14,13 +14,19 @@ app.get('/v1/leases', (req, res) => {
 
 //Generate random dates
 function randomDate(start, end) {
-	var date = new Date(+start + Math.random() * (end - start));
-	return date;
+	let date = new Date(+start + Math.random() * (end - start));
+	const dd = date.getDate();
+	const mm = date.getMonth() + 1;
+	const yy = date.getFullYear();
+	return (date = yy + '-' + mm + '-' + dd);
 }
-//Within the below range
-var startRange = new Date(2018, 06, 01);
-var endRange = new Date(2019, 01, 20);
+//Range dates for start of lease
+var commencingStartDate = new Date(2018, 02, 01);
+var commencingEndDate = new Date(2018, 04, 20);
 
+//Range dates for end of lease
+var finishStartDate = new Date(2018, 07, 01);
+var finishEndDate = new Date(2019, 01, 20);
 //Generate random week days
 function randomDay() {
 	const weekDays = [
@@ -43,12 +49,26 @@ function randomFrequency() {
 
 //Generate random rent amount
 function randomRent() {
-	return paymentFrequency[Math.round(Math.random() * (800 - 500) + 500)];
+	return Math.round(Math.random() * (800 - 500) + 500);
 }
+
+app.get('/lease', (req, res) => {
+	res.send('hello');
+});
 
 app.get('/v1/leases/:id', (req, res) => {
 	var id = req.params.id;
-	res.send({ tenant: { id: id } });
+	console.log('id', id);
+	res.send({
+		tenant: {
+			id: id,
+			start_date: randomDate(commencingStartDate, commencingEndDate),
+			end_date: randomDate(finishStartDate, finishEndDate),
+			rent: randomRent(),
+			frequency: randomFrequency(),
+			payment_day: randomDay()
+		}
+	});
 });
 
 app.listen(3000, () => console.log('Listening at port 3000'));
