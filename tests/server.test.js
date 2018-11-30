@@ -42,4 +42,37 @@ describe('Server API', () => {
 				.end(done);
 		});
 	});
+	describe('get /v1/leases/1 url', () => {
+		it('returns an object containing one tenant with and id equal to 1', done => {
+			request(app)
+				.get('/v1/leases/1')
+				.expect(200)
+				.expect(res => {
+					expect(res.body.tenant.id).toInclude('1');
+				})
+				.end(done);
+		});
+
+		it('returns an object containing one tenant with 6 properties', done => {
+			request(app)
+				.get('/v1/leases/1')
+				.expect(200)
+				.expect(res => {
+					let { tenant } = res.body;
+					let tenantLength = Object.keys(tenant).length;
+					expect(tenantLength).toEqual(6);
+				})
+				.end(done);
+		});
+
+		it('returns an object containing a property name rent that is a number', done => {
+			request(app)
+				.get('/v1/leases/1')
+				.expect(200)
+				.expect(res => {
+					expect(res.body.tenant.rent).toBeA('number');
+				})
+				.end(done);
+		});
+	});
 });

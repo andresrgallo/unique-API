@@ -58,7 +58,6 @@ app.get('/lease', (req, res) => {
 
 app.get('/v1/leases/:id', (req, res) => {
 	var id = req.params.id;
-	console.log('id', id);
 	res.send({
 		tenant: {
 			id: id,
