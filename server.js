@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 
 var app = express();
 
@@ -70,6 +71,8 @@ app.get('/v1/leases/:id', (req, res) => {
 	});
 });
 
-app.listen(5000, () => console.log('Listening at port 5000'));
+app.listen(process.env.PORT, () =>
+	console.log(`Listening at port ${process.env.PORT}`)
+);
 
 module.exports.app = app;
