@@ -5,9 +5,9 @@ var app = express();
 app.get('/v1/leases', (req, res) => {
 	res.send({
 		tenants: [
-			{ id: 1, name: 'Zoe' },
-			{ id: 2, name: 'Andres' },
-			{ id: 3, name: 'Pia' }
+			{ id: 'lease_1', name: 'Zoe' },
+			{ id: 'lease_2', name: 'Andres' },
+			{ id: 'lease_3', name: 'Pia' }
 		]
 	});
 });
@@ -70,6 +70,6 @@ app.get('/v1/leases/:id', (req, res) => {
 	});
 });
 
-app.listen(3000, () => console.log('Listening at port 3000'));
+app.listen(5000, () => console.log('Listening at port 5000'));
 
 module.exports.app = app;
