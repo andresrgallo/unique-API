@@ -1,7 +1,11 @@
 const express = require('express');
 require('dotenv').config();
-
 var app = express();
+const cors = require('cors');
+
+const port = process.env.PORT;
+
+app.use(cors({ origin: '*' }));
 
 app.get('/v1/leases', (req, res) => {
 	res.send({
@@ -71,8 +75,6 @@ app.get('/v1/leases/:id', (req, res) => {
 	});
 });
 
-app.listen(process.env.PORT, () =>
-	console.log(`Listening at port ${process.env.PORT}`)
-);
+app.listen(port, () => console.log(`Listening at port ${port}`));
 
 module.exports.app = app;
