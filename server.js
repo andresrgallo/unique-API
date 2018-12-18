@@ -75,6 +75,8 @@ app.get('/v1/leases/:id', (req, res) => {
 	});
 });
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 app.listen(port, () => console.log(`Listening at port ${port}`));
 
 module.exports.app = app;
